@@ -1,0 +1,14 @@
+ CREATE DATABASE payroll_Service;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.03 sec)
