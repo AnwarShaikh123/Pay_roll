@@ -1,4 +1,7 @@
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	UC7-Ability to find sum, average, min, max and number of male and female
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+employees
 mysql> select sum(salary) from employee_payroll where gender='m' group by gender;
 +-------------+
 | sum(salary) |
@@ -30,3 +33,21 @@ mysql> select max(salary) from employee_payroll where gender='m' group by gender
 |       30000 |
 +-------------+
 1 row in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                          UC8-Ability to extend employee_payroll data to store employee information like employee phone, address and department 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+mysql> ALTER TABLE employee_payroll ADD (phone_no INT,Address VARCHAR(255) DEFAULT 'MUMBAI', Department VARCHAR(255) NOT NULL );
+Query OK, 0 rows affected (1.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from employee_payroll;
++----+-------+--------+--------+------------+----------+---------+------------+
+| id | name  | gender | salary | start      | phone_no | Address | Department |
++----+-------+--------+--------+------------+----------+---------+------------+
+|  1 | Anwar | m      |  10000 | 1998-12-03 |     NULL | MUMBAI  |            |
+|  2 | Raj   | m      |  20000 | 1999-11-04 |     NULL | MUMBAI  |            |
+|  3 | Laksh | m      |  30000 | 2000-10-05 |     NULL | MUMBAI  |            |
++----+-------+--------+--------+------------+----------+---------+------------+
+3 rows in set (0.00 sec)
