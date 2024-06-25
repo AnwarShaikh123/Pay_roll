@@ -86,3 +86,58 @@ mysql> select*from employee_payroll where name= 'Anwar';
 |  4 | Anwar | m      |  80000 | 2016-11-23 | 1243564326 | Mumbai  | Sales      |     50000 |     400000 |       30000 |      60000 |   70000 |
 +----+-------+--------+--------+------------+------------+---------+------------+-----------+------------+-------------+------------+---------+
 2 rows in set (0.03 sec)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	UC11-Ability create new Table called Employee Department having Employee Id and Department ID
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mysql> CREATE TABLE Department (    Department_id INT UNSIGNED NOT NULL,    Department_name VARCHAR(255),    PRIMARY KEY (Department_id));
+Query OK, 0 rows affected (0.45 sec)
+
+mysql> insert into  Department (Department_id) values
+    -> (101),
+    -> (102),
+    -> (103);
+Query OK, 3 rows affected (0.18 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+UPDATE Department SET Department_name = 'Sales' WHERE Department_id = 102;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE Department SET Department_name = 'Marketing' WHERE Department_id = 103;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from Department;
++---------------+-----------------+
+| Department_id | Department_name |
++---------------+-----------------+
+|           101 | IT              |
+|           102 | Sales           |
+|           103 | Marketing       |
++---------------+-----------------+
+3 rows in set (0.00 sec)
+
+ CREATE TABLE Department (    Department_id INT UNSIGNED NOT NULL,    Department_name VARCHAR(255),    PRIMARY KEY (Department_id));
+Query OK, 0 rows affected (0.45 sec)
+
+mysql> CREATE TABLE Employee_Department (    employee_id INT UNSIGNED NOT NULL,    department_id INT UNSIGNED NOT NULL,    PRIMARY KEY (employee_id, department_id),    FOREIGN KEY (employee_id) REFERENCES employee_payroll(id),    FOREIGN KEY (department_id) REFERENCES Department(Department_id));
+Query OK, 0 rows affected (1.23 sec)
+mysql> INSERT INTO Employee_Department (employee_id, department_id) VALUES (1, 101);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO employee_department (employee_id, department_id) VALUES (2, 102);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> INSERT INTO employee_department (employee_id, department_id) VALUES (3, 103);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select*from Employee_Department;
++-------------+---------------+
+| employee_id | department_id |
++-------------+---------------+
+|           1 |           101 |
+|           2 |           102 |
+|           3 |           103 |
++-------------+---------------+
+3 rows in set (0.00 sec)
+
